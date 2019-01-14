@@ -8,10 +8,12 @@ int main() {
     while (c1.detect())
     {
         c1.reset();
+        c1.clear();
         c1.printBoard();
         while (1)
         {
             c1.PromptTurnO();
+            c1.clear();//clear screen
             c1.printBoard();
             if (c1.Owin())
             {
@@ -19,6 +21,7 @@ int main() {
                 break;
             }
             c1.PromptTurnX();
+            c1.clear();
             c1.printBoard();
             if (c1.Xwin())
             {

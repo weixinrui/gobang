@@ -5,6 +5,8 @@
 #ifndef GOBANG_GOBANG_H
 #define GOBANG_GOBANG_H
 
+#include <iostream>
+using std::cout;
 
 class Gobang {
 private:
@@ -26,6 +28,7 @@ public:
     bool Xwin();
     bool detect();
     bool detect1();
+    inline void clear() {cout<<"\033[2J";}
 };
 
 
