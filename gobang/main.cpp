@@ -34,7 +34,5 @@ int main() {
         c1.ChoiceofChar();
     }
     c1.printState();
-    getchar();
-    getchar();
     return 0;
 }
