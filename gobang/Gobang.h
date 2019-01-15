@@ -6,11 +6,14 @@
 #define GOBANG_GOBANG_H
 
 #include <iostream>
+#include <vector>
 using std::cout;
+using std::vector;
+
 
 class Gobang {
 private:
-    char board[9][9];
+    vector< vector<char> > board;
     int Firstplayer, Secondplayer, Draws;
     int SpotsOnBoard;
     char Choice;
@@ -18,8 +21,7 @@ public:
     Gobang();
     void reset();
     void printBoard();
-    void PromptTurnO();
-    void PromptTurnX();
+    void PromptTurn(bool);
     void printState();
     void printinfo();
     void iferror(int&,int&);
@@ -27,7 +29,7 @@ public:
     bool Owin();
     bool Xwin();
     bool detect();
-    bool detect1();
+    bool detect_tie();
     inline void clear() {cout<<"\033[2J";}
 };
 

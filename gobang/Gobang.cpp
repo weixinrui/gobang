@@ -2,30 +2,21 @@
 // Created by wei on 31/10/18.
 //
 #include <iostream>
+#include <vector>
 #include "Gobang.h"
 using namespace std;
 //Used to initialise the chessboard
 Gobang::Gobang()
 {
-    for (int i = 0; i < 9;i++)
-        for (int j = 0; j < 9; j++)
-        {
-            board[i][j] = ' ';
-        }
-    Firstplayer = 0;
-    Secondplayer = 0;
-    Draws = 0;
-    SpotsOnBoard = 0;
     Choice = 'Y';
 }
 //used to reset chessboard after one round.
 void Gobang::reset()
 {
-    for (int i = 0; i < 9; i++)
-        for (int j = 0; j < 9; j++)
-        {
-            board[i][j] = ' ';
-        }
+    board.resize(9);
+    for(size_t i = 0; i != board.size(); i++)
+        for(int j=0; j < 9; j++)
+            board[i].push_back(' ');
     Firstplayer = 0;
     Secondplayer = 0;
     Draws = 0;
@@ -41,44 +32,42 @@ void Gobang::printinfo()
 //used to print chessboard on screen
 void Gobang::printBoard()
 {
-    cout << endl;
+    cout<<endl;
     cout << "    1   2   3   4   5   6   7   8   9" << endl;
-
-    for (int i = 0; i < 9; i++)
+    for(size_t i=0; i!= board.size(); i++)
     {
-        cout << i + 1<<"   ";
-        for (int j = 0; j < 9; j++)
+        cout<< i+1 <<"  ";
+        for(size_t j=0; j!=board[i].size(); j++)
         {
-            cout << board[i][j] << " | ";
+            cout<<board[i][j]<<" | ";
         }
-        cout << '\n' << "--|------------------------------------" << endl;
+        cout<<'\n'<<"--|------------------------------------"<<endl;
     }
-    cout << endl << endl;
-
+    cout<<endl<<endl;
 }
-void Gobang::PromptTurnO()
+void Gobang::PromptTurn(bool turn)
 {
     int x, y;
-    cout << "Turn of the first player(O),enter the coordinates" << endl;
-    cout << "Row:";
-    cin >> x;
-    cout << "Column:";
-    cin >> y;
-    iferror(x, y);
-
-    board[x-1][y-1] = 'O';
-    SpotsOnBoard++;
-}
-void Gobang::PromptTurnX()
-{
-    int x, y;
-    cout << "Turn of the first player(X),enter the coordinates" << endl;
-    cout << "Row:";
-    cin >> x;
-    cout << "Column:";
-    cin >> y;
-    iferror(x, y);
-    board[x-1][y-1] = 'X';
+    if(turn == true)
+    {
+        cout << "Turn of the first player(O),enter the coordinates" << endl;
+        cout << "Row:";
+        cin >> x;
+        cout << "Column:";
+        cin >> y;
+        iferror(x, y);
+        board[x-1][y-1] = 'O';
+    }
+    else
+    {
+        cout << "Turn of the first player(X),enter the coordinates" << endl;
+        cout << "Row:";
+        cin >> x;
+        cout << "Column:";
+        cin >> y;
+        iferror(x, y);
+        board[x-1][y-1] = 'X';
+    }
     SpotsOnBoard++;
 }
 //used to check whether the position inputted by player legal or not
@@ -117,9 +106,9 @@ bool Gobang::detect()
         return false;
 }
 
-bool Gobang::detect1()
+bool Gobang::detect_tie()
 {
-    if (SpotsOnBoard >= 81)
+    if(SpotsOnBoard >= 81)
     {
         Draws++;
         return true;
