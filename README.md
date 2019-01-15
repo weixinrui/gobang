@@ -7,4 +7,4 @@ g++ Gobang.cpp main.cpp -o test
 ## RUN
 ./test
 ## DEMO
-![image](https://github.com/weixinrui/gobang/edit/master/README.md/example.gif)
+![image](https://github.com/weixinrui/gobang/blob/master/example.gif)
