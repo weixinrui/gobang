@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 #include "Gobang.h"
-#include "termcolor.hpp"
+//#include "termcolor.hpp"
 using namespace std;
-using namespace termcolor;
+//using namespace termcolor;
 int main() {
     Gobang c1;
     c1.printinfo();
